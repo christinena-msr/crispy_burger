@@ -1,0 +1,27 @@
+<h1>Eat-Da-Burger</h1>
+<img class="burger-pic" src="../public/assets/img/burger-pic.png" alt="burger">
+
+<h2 class="float-right">Waiting Area</h2>
+<ul>
+    {{#each burger}}
+        {{#unless devoured }}
+            {{burger.id}} + ". " + {{burger.burger_name}}
+        {{/unless}}
+    {{/each}}
+</ul>
+
+<h2 class="float-left">Burgers Consumed</h2>
+<ul>
+    {{#each burger}}
+        {{#if devoured}}
+            {{ }}
+    {{/each}}
+</ul>
+<form class="burger">
+  <div class="burger-form">
+    <input type="text" name="burger" id="burger-name">
+  </div>
+  <div class="burger-form">
+    <input type="submit" value="Subscribe!">
+  </div>
+</form>
