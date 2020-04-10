@@ -1,10 +1,10 @@
 <div class="grid">
     <div class="col-one">
         <h2 class="float-right">Waiting Area</h2>
-        <ul>
+        <ul class="list">
             {{#each burger}}
                 {{#unless this.devoured }}
-                <div>
+                <div class="row">
                     {{this.id}}. {{this.burger_name}}
                     <button class="burger-button" data-id="{{this.id}}" data-devoured="{{this.devoured}}">Devour It!</button>
                 </div>
@@ -15,7 +15,7 @@
 
     <div class="col-two">
         <h2 class="float-left">Burgers Consumed</h2>
-        <ul>
+        <ul class="list">
             {{#each burger}}
                 {{#if this.devoured}}
                 <div>
@@ -31,7 +31,7 @@
     <h2>Add a Burger</h2>
     <form id="burger-form">
     <textarea class="text-box" type="text" name="new-burger" id="burger-name"></textarea>
-    <button type="submit">Add Burger</button>
+    <button class="submit-button" type="submit">Add Burger</button>
     </form> 
 </div>
 
