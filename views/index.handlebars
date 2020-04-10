@@ -14,7 +14,10 @@
 <ul>
     {{#each burger}}
         {{#if this.devoured}}
+        <div>
             {{ this.burger_name }}
+        </div>
+            
         {{/if}}
     {{/each}}
 </ul>
@@ -34,12 +37,16 @@
         const id = this.getAttribute("data-id");
         const devoured = this.getAttribute("data-devoured");
         const status = {
-            devoured: devoured
+            devoured: 1
         };
+        console.log(JSON.stringify(status));
         console.log("this is id & status: " + id + " " + status.devoured);
         fetch("/api/burger/" + id, {
             method: "PUT",
-            body: status
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(status)
         }).then(() => {
             console.log("changed status of burger to ", status.devoured);
             location.reload();
