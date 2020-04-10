@@ -18,3 +18,53 @@
         {{/if}}
     {{/each}}
 </ul>
+
+<h2>Add a Burger</h2>
+<form id="burger-form">
+    <textarea type="text" name="new-burger" id="burger-name"></textarea>
+    <button type="submit">Add Burger</button>
+</form> 
+
+<script>
+    const devourButtons = document.getElementsByClassName("burger-button");
+    const newBurgerButton = document.querySelector("#burger-form");
+    console.log(newBurgerButton);
+    console.log("this should be an array: ", devourButtons);
+    const putCallback = function(event) {
+        const id = this.getAttribute("data-id");
+        const devoured = this.getAttribute("data-devoured");
+        const status = {
+            devoured: devoured
+        };
+        console.log("this is id & status: " + id + " " + status.devoured);
+        fetch("/api/burger/" + id, {
+            method: "PUT",
+            body: status
+        }).then(() => {
+            console.log("changed status of burger to ", status.devoured);
+            location.reload();
+        });
+    }
+    for(let i=0; i<devourButtons.length; i++) {
+        devourButtons[i].addEventListener("click", putCallback);
+    }; 
+    newBurgerButton.addEventListener("submit", (event) => {
+        event.preventDefault();
+        console.log(document.querySelector("#burger-name").value);
+        let newBurger = {
+            name: document.querySelector("#burger-name").value.trim()
+        };
+
+        fetch("/api/burger", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(newBurger)
+        }).then((res) => {
+            console.log(res);
+            console.log("added new burger ", newBurger);
+            location.reload();
+        });
+    });
+</script>
