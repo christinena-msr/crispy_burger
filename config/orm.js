@@ -22,7 +22,7 @@ const orm = {
     updateOne: function(tableName, objColVals, condition, queryCallback) {
         let query = `Update ${tableName}`;
         // col1 = val1, col2 = val2
-        query += ` set ${objColVals}`;
+        query += ` set devoured = ${objColVals}`;
         // select row to update
         query += ` where ${condition}`;
         connection.query(query, (err, res) => {
