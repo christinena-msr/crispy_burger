@@ -11,10 +11,10 @@ const orm = {
     insertOne: function(tableName, cols, vals, queryCallback) {
         let query = `Insert into ${tableName}`;
         // comma separated values for columns
-        query += `(${cols})`;
+        query += ` (${cols}, devoured)`;
         // comma separated values for values
-        query += `values (${vals})`;
-        connection.query(query, params, (err, res) => {
+        query += ` values ("${vals}", 0)`;
+        connection.query(query, (err, res) => {
             if(err) throw err;
             queryCallback(res);
         })
