@@ -1,32 +1,40 @@
-<h2 class="float-right">Waiting Area</h2>
-<ul>
-    {{#each burger}}
-        {{#unless this.devoured }}
-           <div>
-               {{this.id}}. {{this.burger_name}}
-               <button class="burger-button" data-id="{{this.id}}" data-devoured="{{this.devoured}}">Devour It!</button>
-           </div>
-        {{/unless}}
-    {{/each}}
-</ul>
+<div class="grid">
+    <div class="col-one">
+        <h2 class="float-right">Waiting Area</h2>
+        <ul>
+            {{#each burger}}
+                {{#unless this.devoured }}
+                <div>
+                    {{this.id}}. {{this.burger_name}}
+                    <button class="burger-button" data-id="{{this.id}}" data-devoured="{{this.devoured}}">Devour It!</button>
+                </div>
+                {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
 
-<h2 class="float-left">Burgers Consumed</h2>
-<ul>
-    {{#each burger}}
-        {{#if this.devoured}}
-        <div>
-            {{ this.burger_name }}
-        </div>
-            
-        {{/if}}
-    {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form id="burger-form">
-    <textarea type="text" name="new-burger" id="burger-name"></textarea>
+    <div class="col-two">
+        <h2 class="float-left">Burgers Consumed</h2>
+        <ul>
+            {{#each burger}}
+                {{#if this.devoured}}
+                <div>
+                    {{ this.burger_name }}
+                </div>
+                    
+                {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+<div>
+    <h2>Add a Burger</h2>
+    <form id="burger-form">
+    <textarea class="text-box" type="text" name="new-burger" id="burger-name"></textarea>
     <button type="submit">Add Burger</button>
-</form> 
+    </form> 
+</div>
+
 
 <script>
     const devourButtons = document.getElementsByClassName("burger-button");
