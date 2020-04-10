@@ -8,5 +8,5 @@ create table burgers(
     id INT auto_increment,
     primary key (id),
     burger_name varchar(30),
-    devoured boolean
+    devoured boolean default false
 )
