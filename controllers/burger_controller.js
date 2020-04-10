@@ -13,15 +13,16 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burger", (req, res) => {
-    burger.insertOne(cols, vals, (res) => {
+    burger.insertOne("burger_name", req.body.name, (inserted) => {
+        console.log("Success! Burger " + inserted + " added");
         res.json({ id: res.insertId });
     });
 });
 
 router.put("/api/burger/:id", (req, res) => {
     const condition = `id = ${req.params.id}`;
-    burger.updateOne({ burger }, condition, (res) => {
-        if(res.changedRows === 0) {
+    burger.updateOne({ burger }, condition, (updated) => {
+        if(updated.changedRows === 0) {
             res.status(404).end();
         }
         res.status(200).end();
